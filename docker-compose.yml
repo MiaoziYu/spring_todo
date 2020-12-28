@@ -1,0 +1,22 @@
+services:
+  spring:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - javaapp-network
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: todo
+    ports:
+      - "3308:3306"
+    networks:
+      - javaapp-network
+
+networks:
+  javaapp-network:
